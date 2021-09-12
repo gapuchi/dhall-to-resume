@@ -1,0 +1,119 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\begin{document}
+
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+\textbf{\href{http://arjun.adhia.net/}{\Large Arjun Adhia}} & Email : \href{mailto:arjun.adhia@gmail.com}{arjun.adhia@gmail.com}\\
+\href{http://arjun.adhia.net/}{http://arjun.adhia.net/} & Mobile : 704-658-6570 \\
+\end{tabular*}
+
+{% for section in sections %}
+
+    {% raw %} \section{{% endraw %}{{ section.title }}}
+
+    \begin{itemize}[leftmargin=0.15in, label={}]
+
+    \vspace{-2pt}
+
+    \item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+
+      {% raw %}\textbf{{% endraw %}{{ section.header.left }}} & {{ section.header.right }}\\
+
+    \end{tabular*}
+
+    \vspace{-7pt}
+
+    {% for subSection in section.subSections %}
+
+        {% if loop.first %} \vspace{-2pt} {% endif %}
+
+        \item
+        \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+
+          {% raw %}\textit{\small{{% endraw %}{{ subSection.header.left }}}} &  {% raw %}\textit{\small{{% endraw %}{{ subSection.header.right }}}}\\
+
+        \end{tabular*}
+
+        \vspace{-7pt}
+
+        {% if subSection.items | length > 0 %}
+
+          \begin{itemize}
+
+          {% for item in subSection.items %}
+
+              \item\small{% raw %}{{% endraw %}{{ item }}}
+
+              \vspace{-2pt}
+
+          {% endfor %}
+
+          \end{itemize}
+
+          \vspace{-5pt}
+
+        {% endif %}
+
+    {% endfor %}
+
+    \end{itemize}
+
+{% endfor %}
+
+\end{document}

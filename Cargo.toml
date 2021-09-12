@@ -1,0 +1,16 @@
+[package]
+name = "dhall-to-resume"
+version = "0.1.7"
+authors = ["gapuchi <arjun.adhia@gmail.com>"]
+description = "Generates a resume Latex file from a Dhall config."
+edition = "2018"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+log = "0.4.14"
+simple_logger = "1.13.0"
+serde_dhall = "0.10.1"
+serde_json = "1.0.61"
+tera = "1.6.1"
