@@ -31,15 +31,19 @@ fn main() {
         }
     };
 
-    let tera = match Tera::new("templates/*.tex") {
-        Ok(tera) => tera,
+    let template_name = "resume.tex";
+
+    let mut tera = Tera::default();
+
+    match  tera.add_raw_template(template_name, include_str!("templates/resume.tex")) {
         Err(e) => {
-            error!("Error reading templates: {}", e);
+            error!("Error adding template: {}", e);
             ::std::process::exit(1);
         }
+        _ => {}
     };
 
-    let rendered = match tera.render("resume.tex", &context) {
+    let rendered = match tera.render(template_name, &context) {
         Ok(x) => x,
         Err(e) => {
             error!("Error rendering: {}", e);
