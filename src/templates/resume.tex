@@ -58,13 +58,13 @@
 \begin{document}
 
 \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-\textbf{\href{http://arjun.adhia.net/}{\Large Arjun Adhia}} & Email : \href{mailto:arjun.adhia@gmail.com}{arjun.adhia@gmail.com}\\
-\href{http://arjun.adhia.net/}{http://arjun.adhia.net/} & Mobile : 704-658-6570 \\
+\textbf{\href{ {{- user.url -}} }{\Large {{ user.name.first }} {{ user.name.last }}}} & Email : \href{mailto:{{ user.email }}}{ {{- user.email -}} }\\
+\href{ {{- user.url -}} }{ {{- user.url -}} } & Mobile : {{ user.phone }} \\
 \end{tabular*}
 
-{% for section in sections %}
+{%- for section in sections -%}
 
-    {% raw %} \section{{% endraw %}{{ section.title }}}
+    {%- raw -%} \section{{%- endraw -%}{{ section.title }}}
 
     \begin{itemize}[leftmargin=0.15in, label={}]
 
@@ -73,47 +73,47 @@
     \item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
 
-      {% raw %}\textbf{{% endraw %}{{ section.header.left }}} & {{ section.header.right }}\\
+      {%- raw -%}\textbf{{%- endraw -%}{{ section.header.left }}} & {{ section.header.right }}\\
 
     \end{tabular*}
 
     \vspace{-7pt}
 
-    {% for subSection in section.subSections %}
+    {%- for subSection in section.subSections -%}
 
-        {% if loop.first %} \vspace{-2pt} {% endif %}
+        {%- if loop.first -%} \vspace{-2pt} {%- endif -%}
 
         \item
         \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
 
-          {% raw %}\textit{\small{{% endraw %}{{ subSection.header.left }}}} &  {% raw %}\textit{\small{{% endraw %}{{ subSection.header.right }}}}\\
+          {%- raw -%}\textit{\small{{%- endraw -%}{{ subSection.header.left }}}} &  {%- raw -%}\textit{\small{{%- endraw -%}{{ subSection.header.right }}}}\\
 
         \end{tabular*}
 
         \vspace{-7pt}
 
-        {% if subSection.items | length > 0 %}
+        {%- if subSection.items | length > 0 -%}
 
           \begin{itemize}
 
-          {% for item in subSection.items %}
+          {%- for item in subSection.items -%}
 
-              \item\small{% raw %}{{% endraw %}{{ item }}}
+              \item\small{%- raw -%}{{%- endraw -%}{{ item }}}
 
               \vspace{-2pt}
 
-          {% endfor %}
+          {%- endfor -%}
 
           \end{itemize}
 
           \vspace{-5pt}
 
-        {% endif %}
+        {%- endif -%}
 
-    {% endfor %}
+    {%- endfor -%}
 
     \end{itemize}
 
-{% endfor %}
+{%- endfor -%}
 
 \end{document}
