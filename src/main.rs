@@ -15,13 +15,23 @@ fn main() {
 
     info!("Reading Dhall file: {}", filename);
 
-    let config: Value = match serde_dhall::from_file(&filename).parse() {
+    let schema =  match serde_dhall::from_str(include_str!("schema.dhall")).parse() {
         Ok(value) => value,
         Err(e) => {
             error!("Error reading Dhall file: {}", e);
             ::std::process::exit(1);
         }
     };
+
+    let config: Value = match serde_dhall::from_file(&filename)
+        .type_annotation(&schema)
+        .parse() {
+            Ok(value) => value,
+            Err(e) => {
+                error!("Error reading Dhall file: {}", e);
+                ::std::process::exit(1);
+            }
+        };
 
     let context = match Context::from_serialize(&config) {
         Ok(context) => context,
