@@ -73,7 +73,11 @@
     \item
     \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
 
-      {%- raw -%}\textbf{{%- endraw -%}{{ section.header.left }}} & {{ section.header.right }}\\
+      {%- if section.header -%}
+
+        {%- raw -%}\textbf{{%- endraw -%}{{ section.header.left }}} & {{ section.header.right }}\\
+
+      {%- endif -%}
 
     \end{tabular*}
 
@@ -86,7 +90,11 @@
         \item
         \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
 
-          {%- raw -%}\textit{\small{{%- endraw -%}{{ subSection.header.left }}}} &  {%- raw -%}\textit{\small{{%- endraw -%}{{ subSection.header.right }}}}\\
+          {%- if subSection.header -%}
+
+            {%- raw -%}\textit{\small{{%- endraw -%}{{ subSection.header.left }}}} &  {%- raw -%}\textit{\small{{%- endraw -%}{{ subSection.header.right }}}}\\
+
+          {%- endif -%}
 
         \end{tabular*}
 

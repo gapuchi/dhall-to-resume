@@ -12,12 +12,12 @@ let LeftRightHeader
 
 let ResumeSubSection
     : Type
-    = { header : LeftRightHeader, items : List Text }
+    = { header : Optional LeftRightHeader, items : List Text }
 
 let ResumeSection
     : Type
     = { title : Text
-      , header : LeftRightHeader
+      , header : Optional LeftRightHeader
       , subSections : List ResumeSubSection
       }
 

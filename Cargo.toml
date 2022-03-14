@@ -1,6 +1,6 @@
 [package]
 name = "dhall-to-resume"
-version = "0.1.10"
+version = "0.1.11"
 authors = ["gapuchi <arjun.adhia@gmail.com>"]
 description = "Generates a resume Latex file from a Dhall config."
 edition = "2018"
